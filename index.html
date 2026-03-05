@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="content">
+        <h2>Find a Dog Breed</h2>
+        <form class="dog-form" aria-label="Dog Breed Form">
+            <label for="breed-name">Breed Name:</label><br>
+            <input type="text" id="breed-name" name="breedName" aria-required="required" /><br><br>
+            <label for="temperament">Temperament:</label><br>
+            <select name="temperament" id="temperament" aria-required="required">
+                <option value="">--Select a Temperament--</option>
+                <option value="Playful">Playful</option>
+                <option value="Friendly">Friendly</option>
+                <option value="Energetic">Energetic</option>
+                <option value="Loyal">Loyal</option>
+                <option value="Protective">Protective</option>
+                <option value="Intelligent">Intelligent</option>
+                <option value="Affectionate">Affectionate</option>
+
+            </select><br><br>
+            <button type="submit">Search</button>
+        </form><br><br>
+    </div>
+    <div class="result">
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+.content {
+  padding: 50px;
+}
+
+h2 {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+}
+form {
+  text-align: left;
+  background-color: #e8eef3;
+  max-width: 400px;
+  padding: 50px;
+  border-radius: 20px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh; /* at least full viewport height */
+  background: linear-gradient(to bottom right, #c2e3e3, #28428a) no-repeat fixed;
+  background-size: cover;
+}
+button {
+  background-color: #0e287c;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+}
+button:hover {
+  background-color: red;
+}
+.result {
+  display: flex; /* enables flex layout */
+  flex-wrap: wrap; /* allows cards to move to the next row if needed */
+  justify-content: flex-start; /* align items to the left, not center */
+  gap: 10px; /* space between cards horizontally and vertically */
+  padding: 10px;
+  padding-bottom: 20px; /* space after last row */
+}
+
+.card {
+  flex: 0 0 300px; /* each card is 300px wide, doesn’t shrink or grow */
+  max-width: 300px;
+  text-align: left;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+img {
+  max-width: 300px;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 5px solid #f1948a;
+}
+h3 {
+  color: #195276;
+  font-size: 23px;
+}
