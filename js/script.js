@@ -25,30 +25,20 @@ form.addEventListener("submit", handleSubmit);
 // Converts the response from JSON into a JavaScript array of dog objects.
 // Then passes that data into filtering logic.
 function apiCall(dataObject) {
-  //// receives input from form. This lets your form data flow into the API function--dataObject is passed into apiCall().
   fetch("https://api.thedogapi.com/v1/breeds", {
     headers: {
-      "x-api-key":
-        "live_sHFpGXX9wAeEFG3azE9yNVH7XFc8pRzVLkPCwKXreuIMFt5Fn7h0oxe9xvinaOSk"
+      "x-api-key": "live_sHFpGXX9wAeEFG3azE9yNVH7XFc8pRzVLkPCwKXreuIMFt5Fn7h0oxe9xvinaOSk"
     }
   })
-    .then((response) => response.json())
-    .then(
-      (
-        data //// <-- API response
-      ) => {
-        // console.log(data.length); This helped me check the length of the api call--169 dog breeds
+  .then((response) => response.json())
+  .then((data) => {
+      let filteredDogs = [];
 
-        // Create an empty array to hold only the matching dogs
-        let filteredDogs = [];
-
-        // Loop through all dogs
-        for (let i = 0; i < data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
           let dog = data[i];
           let matchesBreed = false;
           let matchesTemp = false;
 
-          // Check if breed name matches (ignore case)
           if (
             dataObject.breedName &&
             dog.name.toLowerCase().includes(dataObject.breedName.toLowerCase())
@@ -56,23 +46,29 @@ function apiCall(dataObject) {
             matchesBreed = true;
           }
 
-          // Check if temperament matches (some dogs may not have a temperament property)
           if (
             dataObject.temperament &&
             dog.temperament &&
-            dog.temperament
-              .toLowerCase()
-              .includes(dataObject.temperament.toLowerCase())
+            dog.temperament.toLowerCase().includes(dataObject.temperament.toLowerCase())
           ) {
             matchesTemp = true;
           }
 
-          // Only add the dog if it matches BOTH
-          if (matchesBreed && matchesTemp) {
+          if (
+            (!dataObject.breedName || matchesBreed) &&
+            (!dataObject.temperament || matchesTemp)
+          ) {
             filteredDogs.push(dog);
           }
-        }
+      }
 
+      // Call showData only once, after filtering all dogs
+      showData(filteredDogs);
+  })
+  .catch((error) => {
+      console.log("Error:", error);
+  });
+}
         // Now show the filtered results
 
         /*Why does showData(filteredDogs) work even though filteredDogs was created inside apiCall?Because:filteredDogs is defined inside apiCall, showData(filteredDogs) is also called inside apiCall. So it is still in scope 
@@ -82,13 +78,7 @@ filteredDogs (inside apiCall)
 gets passed as argument
         ↓
 data (inside showData)*/
-        showData(filteredDogs);
-      }
-    ) // call the display function here, handing the data straight to showData() as soon as it arrives. data is the real value that comes back from the API-whatever the API sends back in JSON.
-    .catch((error) => {
-      console.log("Error:", error);
-    });
-}
+      
 //This is my showData function that receives a parameter called data.
 //// Receives an array of dog objects and displays them on the page.
 
